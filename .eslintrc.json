@@ -1,0 +1,133 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "airbnb"
+    ],
+    "plugins": [
+        "react"
+    ],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "jest": true,
+        "browser": true,
+        "mocha": true,
+        "es6": true
+    },
+    "globals": {
+        "MAIN_WINDOW_WEBPACK_ENTRY": true,
+        "buildTime": true,
+        "IS_NPM": true,
+        "expect": true,
+        "cy": true,
+        "__": true,
+        "__LANG": true
+    },
+    "rules": {
+        "react/jsx-filename-extension": [1, {
+            "extensions": [".tsx"]
+        }],
+        "jsx-a11y/no-autofocus": 0,
+        "import/no-named-as-default": 0,
+        "arrow-parens": ["error", "always"],
+        "function-paren-newline": 0,
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "react/sort-comp": 0,
+        "react/prop-types": [
+            "error",
+            {
+                "ignore": [
+                    "dispatch"
+                ]
+            }
+        ],
+        "no-restricted-syntax": 0,
+        "no-mixed-operators": 0,
+        "no-restricted-globals": 0,
+        "no-plusplus": 0,
+        "import/extensions": 0,
+        "import/prefer-default-export": 0,
+        "max-len": [
+            "error",
+            120
+        ],
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "quotes": ["error", "double"],
+        "jsx-quotes": [
+            "error",
+            "prefer-double"
+        ],
+        "no-unused-vars": 0,
+        "no-underscore-dangle": 0,
+        "comma-dangle": ["error", {
+            "arrays": "never",
+            "objects": "never",
+            "imports": "never",
+            "exports": "never",
+            "functions": "ignore"
+        }],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "object-curly-newline": ["error", {
+            "ObjectExpression": { "multiline": true },
+            "ObjectPattern": { "multiline": true },
+            "ImportDeclaration": { "multiline": true },
+            "ExportDeclaration": { "multiline": true }
+        }],
+        "class-methods-use-this": [
+            "error",
+            {
+                "exceptMethods": [
+                    "render",
+                    "getInitialState",
+                    "getDefaultProps",
+                    "getChildContext",
+                    "componentWillMount",
+                    "componentDidMount",
+                    "shouldComponentUpdate",
+                    "componentDidUpdate",
+                    "componentWillUnmount"
+                ]
+            }
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+//            "webpack": {
+//                "config": "webpack/resolve.js"
+//            },
+            "node": {
+                "extensions": [
+                    ".ts",
+                    ".js",
+                    ".tsx",
+                    ".jsx",
+                    ".json"
+                ]
+            }
+        },
+        "react": {
+            "pragma": "React",
+            "version": "16.4"
+        }
+    }
+}
