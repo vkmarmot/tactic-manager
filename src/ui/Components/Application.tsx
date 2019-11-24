@@ -12,7 +12,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme, Theme, createStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import { ObjectEditor } from "./ObjectEditor";
 import {
     BrowserRouter as Router,
     Switch,
@@ -20,6 +19,7 @@ import {
     Link as RouterLink,
     LinkProps as RouterLinkProps
 } from "react-router-dom";
+import ObjectsActivity from "./ObjectsActivity/ObjectsActivity";
 
 const drawerWidth = 240;
 
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 interface ListItemLinkProps {
     icon?: React.ReactElement;
-    onClick(): void;
+    onClick?(): void;
     children: string;
     to: string;
 }
@@ -65,6 +65,7 @@ function ListItemLink(props: ListItemLinkProps) {
             React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, "innerRef" | "to">>((itemProps, ref) => (
                 // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
                 // See https://github.com/ReactTraining/react-router/issues/6056
+                // eslint-disable-next-line react/jsx-props-no-spreading
                 <RouterLink to={to} {...itemProps} innerRef={ref} />
             )),
         [to]
@@ -93,12 +94,8 @@ export const Application = () => {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                <ListItemLink onClick={handleDrawerToggle} to="/">
-                    hOME
-                </ListItemLink>
-                <ListItemLink onClick={handleDrawerToggle} to="/object-editor">
-                    Users
-                </ListItemLink>
+                <ListItemLink to="/">Панель управления</ListItemLink>
+                <ListItemLink to="/object-editor">Редактор объектов</ListItemLink>
             </List>
         </div>
     );
@@ -147,7 +144,7 @@ export const Application = () => {
                     <div className={classes.toolbar} />
                     <Switch>
                         <Route path="/object-editor">
-                            <ObjectEditor />
+                            <ObjectsActivity />
                         </Route>
                         <Route path="/">
                             <div> sad ads </div>

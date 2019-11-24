@@ -28,8 +28,16 @@
 
 import ReactDom from "react-dom";
 import React from "react";
-import { Application } from "./Components/Application";
+import { Provider } from "react-redux";
+
+import { store } from "./ui/store/store";
+import { Application } from "./ui/Components/Application";
 
 import "./index.css";
 
-ReactDom.render(<Application />, document.querySelector("#main"));
+ReactDom.render(
+    <Provider store={store}>
+        <Application />
+    </Provider>,
+    document.querySelector("#main")
+);

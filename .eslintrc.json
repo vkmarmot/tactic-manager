@@ -1,7 +1,8 @@
 {
     "parser": "@typescript-eslint/parser",
     "extends": [
-        "airbnb"
+        "airbnb",
+        "prettier"
     ],
     "plugins": [
         "react"
@@ -31,7 +32,10 @@
         "react/jsx-filename-extension": [1, {
             "extensions": [".tsx"]
         }],
+        "react/jsx-props-no-spreading": 0,
         "jsx-a11y/no-autofocus": 0,
+        "jsx-a11y/label-has-associated-control": 0,
+        "jsx-a11y/alt-text": 0,
         "import/no-named-as-default": 0,
         "arrow-parens": ["error", "always"],
         "function-paren-newline": 0,
