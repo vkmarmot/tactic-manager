@@ -17,6 +17,12 @@ module.exports = [
     // /**
     //  * Typescript Example:
     //  *
+
+    {
+        test: /\.scss$/,
+        exclude: /\.useable\.scss/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader?modules" }, { loader: "sass-loader" }]
+    },
     {
         test: /\.tsx?$/,
         exclude: /(node_modules|.webpack)/,

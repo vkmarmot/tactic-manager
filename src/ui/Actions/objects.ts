@@ -1,6 +1,7 @@
-import { IObjectsSetFiles, IObjectsSetSelected } from "../Reducer/objects";
+import {IObjectsSetFiles, IObjectsSetSelected} from "../Reducer/objects";
+import {ITacticIcon} from "../TacticIcon/ITacticIcon";
 
-export const setFiles = (files: string[]): IObjectsSetFiles => ({
+export const setFiles = (files: ITacticIcon[]): IObjectsSetFiles => ({
     type: "objects:set-files",
     files
 });

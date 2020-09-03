@@ -8,20 +8,24 @@ import IconButton from "@material-ui/core/IconButton";
 import React from "react";
 import { Preview } from "../Preview/Preview";
 
+import classes from "./ObjectListItem.scss";
+import {ITacticIcon} from "../../TacticIcon/ITacticIcon";
+
 interface IObjectListItemProps {
-    file: File;
+    file: ITacticIcon;
+    selected: boolean;
     onClick(): void;
     onDelete(): void;
 }
 
-export const ObjectListItem = ({ file, onClick, onDelete }: IObjectListItemProps) => (
-    <ListItem onClick={onClick}>
+export const ObjectListItem = ({ file, selected, onClick, onDelete }: IObjectListItemProps) => (
+    <ListItem selected={selected} onClick={onClick}>
         <ListItemAvatar>
             <Avatar>
                 <Preview file={file} />
             </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={file.name} />
+        <ListItemText className={classes.objectListItem_Name} primary={file.meta.name} />
         <ListItemSecondaryAction>
             <IconButton edge="end" aria-label="delete" onClick={onDelete}>
                 <DeleteIcon />

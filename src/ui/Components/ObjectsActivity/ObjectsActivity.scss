@@ -1,0 +1,28 @@
+.ObjectsActivity {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ObjectsActivityButtons {
+    display: flex;
+}
+
+.ObjectsActivityFilter {
+    width: 100%;
+}
+
+.GridRoot {
+    max-height: 100%;
+}
+.IconList {
+    max-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.GridElementEditor {
+    overflow: hidden;
+    max-height: 100%;
+}

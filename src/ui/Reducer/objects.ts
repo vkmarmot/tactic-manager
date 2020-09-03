@@ -1,6 +1,8 @@
+import {ITacticIcon} from "@tmc/icon-util";
+
 export interface IObjectsSetFiles {
     type: "objects:set-files";
-    files: string[];
+    files: ITacticIcon[];
 }
 
 export interface IObjectsSetSelected {
@@ -9,7 +11,7 @@ export interface IObjectsSetSelected {
 }
 
 export interface IObjectStore {
-    files: string[];
+    files: ITacticIcon[];
     selected: number;
 }
 

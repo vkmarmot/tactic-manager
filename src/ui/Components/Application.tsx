@@ -25,12 +25,14 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: { display: "flex" },
+        root: { display: "flex", height: "100%" },
         drawer: {
             [theme.breakpoints.up("sm")]: {
                 width: drawerWidth,
                 flexShrink: 0
-            }
+            },
+            display: "flex",
+            flexDirection: "column"
         },
         appBar: {
             [theme.breakpoints.up("sm")]: {
@@ -46,6 +48,8 @@ const useStyles = makeStyles((theme: Theme) =>
         drawerPaper: { width: drawerWidth },
         content: {
             flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
             padding: theme.spacing(3)
         }
     })
@@ -94,8 +98,8 @@ export const Application = () => {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                <ListItemLink to="/">Панель управления</ListItemLink>
-                <ListItemLink to="/object-editor">Редактор объектов</ListItemLink>
+                <ListItemLink to="/">Control Panel</ListItemLink>
+                <ListItemLink to="/object-editor">Object Editor</ListItemLink>
             </List>
         </div>
     );
@@ -115,9 +119,19 @@ export const Application = () => {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h6" noWrap>
-                            Responsive drawer
-                        </Typography>
+
+                        <Switch>
+                            <Route path="/object-editor">
+                                <Typography variant="h6" noWrap>
+                                    Object Editor
+                                </Typography>
+                            </Route>
+                            <Route path="/">
+                                <Typography variant="h6" noWrap>
+                                    Control Panel
+                                </Typography>
+                            </Route>
+                        </Switch>
                     </Toolbar>
                 </AppBar>
                 <nav className={classes.drawer} aria-label="mailbox folders">
@@ -147,7 +161,7 @@ export const Application = () => {
                             <ObjectsActivity />
                         </Route>
                         <Route path="/">
-                            <div> sad ads </div>
+                            <div>TODO</div>
                         </Route>
                     </Switch>
                 </main>
