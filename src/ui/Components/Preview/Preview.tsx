@@ -44,7 +44,7 @@ export const Preview = ({ file, height = "100%", width = "100%" }: IPreviewPops)
         return () => {
             aborted = true;
         };
-    }, [file]);
+    }, [file.svg()]);
     useEffect(appendChildEffect(ref, loaded), [loaded]);
     return (
         <div className={classes.preview}>

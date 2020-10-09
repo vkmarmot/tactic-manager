@@ -9,7 +9,9 @@ export const GROUP_NAMES: { [key: string]: string } = {
     rvsn: "РВСН",
     space: "Космические войска",
     technique: "Бронетехника и автомобили",
-    weapons: "Стрелковое оружие и артиллерия"
+    weapons: "Стрелковое оружие и артиллерия",
+    "yabpobjects": "Объекты и средства обеспечения ЯБП",
+    "borderprotection": "Технические средства охраны границы"
 };
 
 export const DEFAULT_GROUPS = [
@@ -22,5 +24,7 @@ export const DEFAULT_GROUPS = [
     "rvsn",
     "space",
     "technique",
-    "weapons"
+    "weapons",
+    "yabpobjects",
+    "borderprotection"
 ];

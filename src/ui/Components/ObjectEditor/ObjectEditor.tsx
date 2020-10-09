@@ -77,9 +77,8 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
         return () => {
             aborted = true;
         };
-    }, [file]);
+    }, [file.svg()]);
     useEffect(appendChildEffect(ref, fileContent), [fileContent]);
-    console.log(file.meta.group);
     return (
         <form className={classes.ObjectEditorContainer} noValidate autoComplete="off">
             {/*<div className={classes.ObjectEditorButtons}>*/}
@@ -113,7 +112,7 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
                 <FormControl className={materialClasses.formControl}>
                     <TextField
                         label="КЭУЗ id"
-                        value={file.meta.keuz}
+                        value={file.meta.keuz || ""}
                         onChange={(e) => {
                             setCurrentIcon(
                                 cloneIcon(file, {
