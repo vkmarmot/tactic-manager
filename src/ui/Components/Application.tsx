@@ -2,10 +2,6 @@ import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -21,7 +17,7 @@ import {
 } from "react-router-dom";
 import ObjectsActivity from "./ObjectsActivity/ObjectsActivity";
 
-const drawerWidth = 240;
+const drawerWidth = 0;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -96,11 +92,11 @@ export const Application = () => {
     const drawer = (
         <div>
             <div className={classes.toolbar} />
-            <Divider />
+            {/* <Divider />
             <List>
                 <ListItemLink to="/">Control Panel</ListItemLink>
                 <ListItemLink to="/object-editor">Object Editor</ListItemLink>
-            </List>
+            </List> */}
         </div>
     );
 
@@ -121,47 +117,19 @@ export const Application = () => {
                         </IconButton>
 
                         <Switch>
-                            <Route path="/object-editor">
-                                <Typography variant="h6" noWrap>
-                                    Object Editor
-                                </Typography>
-                            </Route>
                             <Route path="/">
                                 <Typography variant="h6" noWrap>
-                                    Control Panel
+                                    Object Editor
                                 </Typography>
                             </Route>
                         </Switch>
                     </Toolbar>
                 </AppBar>
-                <nav className={classes.drawer} aria-label="mailbox folders">
-                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                    <Hidden smUp implementation="css">
-                        <Drawer
-                            variant="temporary"
-                            anchor={theme.direction === "rtl" ? "right" : "left"}
-                            open={mobileOpen}
-                            onClose={handleDrawerToggle}
-                            classes={{ paper: classes.drawerPaper }}
-                            ModalProps={{ keepMounted: true }}
-                        >
-                            {drawer}
-                        </Drawer>
-                    </Hidden>
-                    <Hidden xsDown implementation="css">
-                        <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
-                            {drawer}
-                        </Drawer>
-                    </Hidden>
-                </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <Switch>
-                        <Route path="/object-editor">
-                            <ObjectsActivity />
-                        </Route>
                         <Route path="/">
-                            <div>TODO</div>
+                            <ObjectsActivity />
                         </Route>
                     </Switch>
                 </main>

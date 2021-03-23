@@ -81,6 +81,13 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
     useEffect(appendChildEffect(ref, fileContent), [fileContent]);
     return (
         <form className={classes.ObjectEditorContainer} noValidate autoComplete="off">
+            <FormControl className={materialClasses.formControl}>
+                <div className={classes.objectEditor}>
+                    {!fileContent && !error ? <div>Loading..</div> : undefined}
+                    {fileContent ? <div ref={ref} /> : undefined}
+                    {error ? <div>{error}</div> : undefined}
+                </div>
+            </FormControl>
             {/*<div className={classes.ObjectEditorButtons}>*/}
             {/*    <Button*/}
             {/*        variant="contained"*/}
@@ -198,13 +205,6 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
                         <FormControlLabel value="flip" control={<Radio />} label="Flip" />
                         <FormControlLabel value="rotate" control={<Radio />} label="Rotate" />
                     </RadioGroup>
-                </FormControl>
-                <FormControl className={materialClasses.formControl}>
-                    <div className={classes.objectEditor}>
-                        {!fileContent && !error ? <div>Loading..</div> : undefined}
-                        {fileContent ? <div ref={ref} /> : undefined}
-                        {error ? <div>{error}</div> : undefined}
-                    </div>
                 </FormControl>
                 {fileContent ? (
                     <FormControl contentEditable={false} className={materialClasses.formControl}>
