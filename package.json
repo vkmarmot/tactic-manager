@@ -1,7 +1,7 @@
 {
     "name": "tactic-manager",
     "productName": "tactic-manager",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Tactic icon manager",
     "main": ".webpack/main",
     "scripts": {
@@ -109,9 +109,9 @@
         "eslint-plugin-react": "^7.16.0",
         "eslint-plugin-react-hooks": "^2.3.0",
         "node-loader": "^0.6.0",
-        "node-sass": "^4.13.0",
+        "node-sass": "^5.0.0",
         "prettier": "^1.19.1",
-        "sass-loader": "^8.0.0",
+        "sass-loader": "^10.1.0",
         "style-loader": "^0.23.1",
         "typescript": "^3.7.2"
     }
