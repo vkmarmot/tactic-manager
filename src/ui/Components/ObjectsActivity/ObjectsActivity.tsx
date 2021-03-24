@@ -83,16 +83,6 @@ export const ObjectsActivity = () => {
                         >
                             Save
                         </SaveButton>
-                        <SaveButton
-                            disabled={!files.length}
-                            filter="js"
-                            onSave={(path) => {
-                                saveIconListLegacy(path, files);
-                            }}
-                            className={classesButton.button}
-                        >
-                            Save legacy
-                        </SaveButton>
                     </div>
                     <TextField
                         className={classes.ObjectsActivityFilter}
