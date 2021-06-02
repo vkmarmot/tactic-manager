@@ -220,7 +220,7 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
                     </div>
                 </Grid>
 
-                <Grid item md={6} lg={3} xs={12}>
+                <Grid item md={6} lg={6} xs={12}>
                     <FormControl className={materialClasses.formControl}>
                         <div className={classes.objectEditor}>
                             {!fileContent && !error ? <div>Loading..</div> : undefined}
@@ -228,8 +228,6 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
                             {error ? <div>{error}</div> : undefined}
                         </div>
                     </FormControl>
-                </Grid>
-                <Grid item md={6} lg={3} xs={12}>
 
                     {fileContent ? (
                         <FormControl contentEditable={false} className={materialClasses.formControl}>
