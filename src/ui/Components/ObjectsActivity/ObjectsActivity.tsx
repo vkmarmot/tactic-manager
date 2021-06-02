@@ -39,7 +39,7 @@ export const ObjectsActivity = () => {
     return (
         <div className={classes.ObjectsActivity}>
             <Grid className={classes.GridRoot} container spacing={3}>
-                <Grid className={classes.IconList} item xs={4}>
+                <Grid className={classes.IconList} item lg={2} md={4} xs={5}>
                     <div className={classes.ObjectsActivityButtons}>
                         <FilePicker
                             content="Load"
@@ -111,7 +111,7 @@ export const ObjectsActivity = () => {
                         undefined
                     )}
                 </Grid>
-                <Grid className={classes.GridElementEditor} item xs={8}>
+                <Grid className={classes.GridElementEditor} item lg={10} md={8} xs={7}>
                     {hasDataToView ? (
                         <ObjectEditor
                             groups={groups}

@@ -7,7 +7,7 @@ import {
     createStyles,
     FormControl,
     FormControlLabel,
-    FormLabel,
+    FormLabel, Grid,
     InputLabel,
     makeStyles,
     MenuItem,
@@ -81,13 +81,165 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
     useEffect(appendChildEffect(ref, fileContent), [fileContent]);
     return (
         <form className={classes.ObjectEditorContainer} noValidate autoComplete="off">
-            <FormControl className={materialClasses.formControl}>
-                <div className={classes.objectEditor}>
-                    {!fileContent && !error ? <div>Loading..</div> : undefined}
-                    {fileContent ? <div ref={ref} /> : undefined}
-                    {error ? <div>{error}</div> : undefined}
-                </div>
-            </FormControl>
+            <Grid container className={classes.root} spacing={2}>
+
+                <Grid item md={6} lg={6} xs={12}>
+                    <div className={classes.ObjectEditorControls}>
+                        <FormControl className={materialClasses.formControl}>
+                            <TextField
+                                label="Icon id"
+                                value={file.meta.id}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            id: e.target.value
+                                        })
+                                    );
+                                }}
+                            />
+                        </FormControl>
+                        <FormControl className={materialClasses.formControl}>
+                            <TextField
+                                label="КЭУЗ id"
+                                value={file.meta.keuz || ""}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            keuz: e.target.value
+                                        })
+                                    );
+                                }}
+                            />
+                        </FormControl>
+                        <FormControl className={materialClasses.formControl}>
+                            <TextField
+                                label="Панорама id"
+                                value={file.meta.panoramaId || ""}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            panoramaId: e.target.value
+                                        })
+                                    );
+                                }}
+                            />
+                        </FormControl>
+                        <FormControl className={materialClasses.formControl}>
+                            <TextField
+                                label="Icon name"
+                                value={file.meta.name || file.meta.id}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            name: e.target.value
+                                        })
+                                    );
+                                }}
+                            />
+                        </FormControl>
+                        <FormControl className={materialClasses.formControl}>
+                            <InputLabel id="demo-simple-select-label">Angle</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                value={file.meta.defaultAngle || 0}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            defaultAngle: e.target.value as any
+                                        })
+                                    );
+                                }}
+                            >
+                                {angles.map((angle) => (
+                                    <MenuItem key={`angle-${angle}`} value={angle}>
+                                        {angle}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <FormControl className={materialClasses.formControl}>
+                            <InputLabel id="group-selector">Group</InputLabel>
+                            <Select
+                                labelId="group-selector"
+                                value={file.meta.group || "default"}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            group: e.target.value as any
+                                        })
+                                    );
+                                }}
+                            >
+                                {groups.map((group) => (
+                                    <MenuItem key={`group-${group}`} value={group}>
+                                        {GROUP_NAMES[group] || group}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <FormControl className={materialClasses.formControl} component="fieldset">
+                            <FormLabel component="legend">Orientation</FormLabel>
+                            <RadioGroup
+                                aria-label="orientation"
+                                name="orientation"
+                                value={file.meta.rotationType}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            rotationType: e.target.value as any
+                                        })
+                                    );
+                                }}
+                            >
+                                <FormControlLabel value="fixed" control={<Radio />} label="Fixed" />
+                                <FormControlLabel value="flip" control={<Radio />} label="Flip" />
+                                <FormControlLabel value="rotate" control={<Radio />} label="Rotate" />
+                            </RadioGroup>
+                        </FormControl>
+                        <FormControl className={materialClasses.formControl}>
+                            <TextField
+                                label="Комментарий"
+                                value={file.meta.comment || ""}
+                                onChange={(e) => {
+                                    setCurrentIcon(
+                                        cloneIcon(file, {
+                                            ...file.meta,
+                                            comment: e.target.value
+                                        })
+                                    );
+                                }}
+                            />
+                        </FormControl>
+                    </div>
+                </Grid>
+
+                <Grid item md={6} lg={3} xs={12}>
+                    <FormControl className={materialClasses.formControl}>
+                        <div className={classes.objectEditor}>
+                            {!fileContent && !error ? <div>Loading..</div> : undefined}
+                            {fileContent ? <div ref={ref} /> : undefined}
+                            {error ? <div>{error}</div> : undefined}
+                        </div>
+                    </FormControl>
+                </Grid>
+                <Grid item md={6} lg={3} xs={12}>
+
+                    {fileContent ? (
+                        <FormControl contentEditable={false} className={materialClasses.formControl}>
+                            <TextField multiline rows={10} value={fileContent.outerHTML} />
+                        </FormControl>
+                    ) : (
+                        undefined
+                    )}
+                </Grid>
+            </Grid>
             {/*<div className={classes.ObjectEditorButtons}>*/}
             {/*    <Button*/}
             {/*        variant="contained"*/}
@@ -101,147 +253,6 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
             {/*        Save*/}
             {/*    </Button>*/}
             {/*</div>*/}
-            <div className={classes.ObjectEditorControls}>
-                <FormControl className={materialClasses.formControl}>
-                    <TextField
-                        label="Icon id"
-                        value={file.meta.id}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    id: e.target.value
-                                })
-                            );
-                        }}
-                    />
-                </FormControl>
-                <FormControl className={materialClasses.formControl}>
-                    <TextField
-                        label="КЭУЗ id"
-                        value={file.meta.keuz || ""}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    keuz: e.target.value
-                                })
-                            );
-                        }}
-                    />
-                </FormControl>
-                <FormControl className={materialClasses.formControl}>
-                    <TextField
-                        label="Панорама id"
-                        value={file.meta.panoramaId || ""}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    panoramaId: e.target.value
-                                })
-                            );
-                        }}
-                    />
-                </FormControl>
-                <FormControl className={materialClasses.formControl}>
-                    <TextField
-                        label="Icon name"
-                        value={file.meta.name || file.meta.id}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    name: e.target.value
-                                })
-                            );
-                        }}
-                    />
-                </FormControl>
-                <FormControl className={materialClasses.formControl}>
-                    <InputLabel id="demo-simple-select-label">Angle</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        value={file.meta.defaultAngle || 0}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    defaultAngle: e.target.value as any
-                                })
-                            );
-                        }}
-                    >
-                        {angles.map((angle) => (
-                            <MenuItem key={`angle-${angle}`} value={angle}>
-                                {angle}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl className={materialClasses.formControl}>
-                    <InputLabel id="group-selector">Group</InputLabel>
-                    <Select
-                        labelId="group-selector"
-                        value={file.meta.group || "default"}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    group: e.target.value as any
-                                })
-                            );
-                        }}
-                    >
-                        {groups.map((group) => (
-                            <MenuItem key={`group-${group}`} value={group}>
-                                {GROUP_NAMES[group] || group}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl className={materialClasses.formControl} component="fieldset">
-                    <FormLabel component="legend">Orientation</FormLabel>
-                    <RadioGroup
-                        aria-label="orientation"
-                        name="orientation"
-                        value={file.meta.rotationType}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    rotationType: e.target.value as any
-                                })
-                            );
-                        }}
-                    >
-                        <FormControlLabel value="fixed" control={<Radio />} label="Fixed" />
-                        <FormControlLabel value="flip" control={<Radio />} label="Flip" />
-                        <FormControlLabel value="rotate" control={<Radio />} label="Rotate" />
-                    </RadioGroup>
-                </FormControl>
-                <FormControl className={materialClasses.formControl}>
-                    <TextField
-                        label="Комментарий"
-                        value={file.meta.comment || ""}
-                        onChange={(e) => {
-                            setCurrentIcon(
-                                cloneIcon(file, {
-                                    ...file.meta,
-                                    comment: e.target.value
-                                })
-                            );
-                        }}
-                    />
-                </FormControl>
-                {fileContent ? (
-                    <FormControl contentEditable={false} className={materialClasses.formControl}>
-                        <TextField multiline rows={10} value={fileContent.outerHTML} />
-                    </FormControl>
-                ) : (
-                    undefined
-                )}
-            </div>
         </form>
     );
 };
