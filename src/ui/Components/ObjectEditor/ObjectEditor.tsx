@@ -132,6 +132,20 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
                 </FormControl>
                 <FormControl className={materialClasses.formControl}>
                     <TextField
+                        label="Панорама id"
+                        value={file.meta.panoramaId || ""}
+                        onChange={(e) => {
+                            setCurrentIcon(
+                                cloneIcon(file, {
+                                    ...file.meta,
+                                    panoramaId: e.target.value
+                                })
+                            );
+                        }}
+                    />
+                </FormControl>
+                <FormControl className={materialClasses.formControl}>
+                    <TextField
                         label="Icon name"
                         value={file.meta.name || file.meta.id}
                         onChange={(e) => {
@@ -205,6 +219,20 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
                         <FormControlLabel value="flip" control={<Radio />} label="Flip" />
                         <FormControlLabel value="rotate" control={<Radio />} label="Rotate" />
                     </RadioGroup>
+                </FormControl>
+                <FormControl className={materialClasses.formControl}>
+                    <TextField
+                        label="Комментарий"
+                        value={file.meta.comment || ""}
+                        onChange={(e) => {
+                            setCurrentIcon(
+                                cloneIcon(file, {
+                                    ...file.meta,
+                                    comment: e.target.value
+                                })
+                            );
+                        }}
+                    />
                 </FormControl>
                 {fileContent ? (
                     <FormControl contentEditable={false} className={materialClasses.formControl}>

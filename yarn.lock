@@ -1197,10 +1197,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tmc/icon-util@^1.0.1":
-  version "1.0.1"
-  resolved "http://npm.stc-spb.ru/@tmc%2ficon-util/-/icon-util-1.0.1.tgz#0cbb49e8a2eac3b509ff7bfb6bf82b03f3ab7678"
-  integrity sha512-OTL4RMRys1ifypKjBgLosrAfbMRwbiGQNEsX40xDy9NqQSJ0mxBDGPpXE8rc6A+RTB7WrvYWuXFRTwbtag6snw==
+"@tmc/icon-util@^1.0.4":
+  version "1.0.4"
+  resolved "http://npm.stc-spb.ru/@tmc%2ficon-util/-/icon-util-1.0.4.tgz#f8d370fb4d8001bf4083a86bfffdc648aed48a67"
+  integrity sha512-cBd95ANe3S3e+R+IabZL2O1t7Vfm+w8rZ34bQlbRdCnRO48orJUY6X9U3D0aqVzcmSFewOmlHLsKrOXdnwfDaQ==
 
 "@types/electron-packager@^14.0.0":
   version "14.0.0"

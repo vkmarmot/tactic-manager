@@ -43,7 +43,7 @@ export const ObjectsActivity = () => {
                     <div className={classes.ObjectsActivityButtons}>
                         <FilePicker
                             content="Load"
-                            accept="image/svg+xml, .json"
+                            accept="image/svg+xml, .json, .tmc"
                             onFiles={(newFiles) => {
                                 parseList(newFiles)
                                     .then(setFiles)
@@ -57,7 +57,7 @@ export const ObjectsActivity = () => {
                         />
                         <FilePicker
                             content="Add"
-                            accept="image/svg+xml, .json"
+                            accept="image/svg+xml, .json, .tmc"
                             onFiles={(newFiles) => {
                                 parseList(newFiles)
                                     .then((icons) => {
