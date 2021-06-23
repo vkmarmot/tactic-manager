@@ -2,6 +2,7 @@ import Button from "@material-ui/core/Button";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { remote } from "electron";
 import React from "react";
+import SaveIcon from '@material-ui/icons/Save';
 
 interface ISaveButtonProps {
     disabled?: boolean;
@@ -14,6 +15,7 @@ interface ISaveButtonProps {
 export const SaveButton: React.FC<ISaveButtonProps> = ({ disabled, filter, className, onSave, children }: ISaveButtonProps) => (
     <Button
         variant="contained"
+        startIcon={<SaveIcon />}
         component="span"
         disabled={disabled}
         onClick={() => {

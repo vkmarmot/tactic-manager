@@ -21,7 +21,7 @@ const drawerWidth = 0;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: { display: "flex", height: "100%" },
+        root: { display: "flex", height: "100%", paddingTop: "2em", flexDirection: "column" },
         drawer: {
             [theme.breakpoints.up("sm")]: {
                 width: drawerWidth,
@@ -126,7 +126,7 @@ export const Application = () => {
                     </Toolbar>
                 </AppBar>
                 <main className={classes.content}>
-                    <div className={classes.toolbar} />
+                    {/*<div className={classes.toolbar} />*/}
                     <Switch>
                         <Route path="/">
                             <ObjectsActivity />

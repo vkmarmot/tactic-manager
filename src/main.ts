@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
+import windowStateKeeper from "electron-window-state";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -12,10 +13,17 @@ if (require("electron-squirrel-startup")) {
 let mainWindow: BrowserWindow | undefined | null;
 
 const createWindow = () => {
+    const mainWindowState = windowStateKeeper({
+        defaultWidth: 1000,
+        defaultHeight: 800
+    });
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        x: mainWindowState.x,
+        y: mainWindowState.y,
+        width: mainWindowState.width,
+        height: mainWindowState.height,
+        minWidth: 400,
         webPreferences: {
             nodeIntegration: true,
             nodeIntegrationInWorker: true
@@ -24,9 +32,9 @@ const createWindow = () => {
     // and load the index.html of the app.
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-
+    Menu.setApplicationMenu(null);
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on("closed", () => {
