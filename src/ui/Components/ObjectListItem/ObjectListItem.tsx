@@ -6,10 +6,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import React from "react";
+import {ITacticIcon} from "@tmc/icon-util";
+
 import { Preview } from "../Preview/Preview";
 
 import classes from "./ObjectListItem.scss";
-import {ITacticIcon} from "../../TacticIcon/ITacticIcon";
+
 
 interface IObjectListItemProps {
     file: ITacticIcon;

@@ -1,12 +1,13 @@
-import { FilePicker } from "../FilePicker/FilePicker";
 import { ITacticIcon, parseList } from "@tmc/icon-util";
+import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import React from "react";
+
+import { FilePicker } from "../FilePicker/FilePicker";
 import { logError } from "../../util/Logger";
+import { saveIconList } from "../../../ui/TacticIcon/Saver";
 import { mergeIconList } from "../../util/IconListUtil";
 import { SaveButton } from "../Button/Buttons";
-import { saveIconList } from "../../TacticIcon/Saver";
-import React from "react";
-import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 
 import { useButtonStyles } from "../Button/styles";
 import { ToolbarDesctopSection } from "../Toolbar/Toolbar";

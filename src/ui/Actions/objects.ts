@@ -1,5 +1,5 @@
+import {ITacticIcon} from "@tmc/icon-util";
 import {IObjectsSetFiles, IObjectsSetSelected} from "../Reducer/objects";
-import {ITacticIcon} from "../TacticIcon/ITacticIcon";
 
 export const setFiles = (files: ITacticIcon[]): IObjectsSetFiles => ({
     type: "objects:set-files",

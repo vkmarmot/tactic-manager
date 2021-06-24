@@ -1,9 +1,9 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { TreeComponent } from "virtualized-tree/dist";
+import { ITacticIcon } from "@tmc/icon-util";
 
 import { ObjectListItem } from "../ObjectListItem/ObjectListItem";
-import { ITacticIcon } from "../../TacticIcon/ITacticIcon";
 import { TreeElement, TreeElementWithOffset } from "virtualized-tree/dist/types";
 import styleUtil from "../../styles/Utils.scss";
 import {List} from "@material-ui/core";
