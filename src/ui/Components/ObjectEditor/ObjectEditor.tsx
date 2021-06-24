@@ -1,25 +1,25 @@
-import React, {useEffect, useRef, useState} from "react";
+import React from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import {
     createStyles,
     FormControl,
     FormControlLabel,
-    FormLabel, Grid,
+    FormLabel,
+    Grid,
     InputLabel,
     makeStyles,
     MenuItem,
     Select,
     Theme
 } from "@material-ui/core";
-import {contentToSvg, ITacticIcon, ITacticIconMetaData} from "@tmc/icon-util";
-import {appendChildEffect} from "../../effects/SvgEffect";
+import { ITacticIcon, ITacticIconMetaData } from "@tmc/icon-util";
 
 import classes from "./ObjectEditor.scss";
-import {GROUP_NAMES} from "./constants";
-import {useButtonStyles} from "../Button/styles";
+import { GROUP_NAMES } from "./constants";
+import { SvgView } from "../SvgView/SvgView";
+import { SvgContentView } from "../SvgContentView/SvgContentView";
 
 interface IObjectEditorProps {
     file: ITacticIcon;
@@ -50,39 +50,9 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
     // useEffect(() => {
     //     setCurrentIcon(iconSrc);
     // }, [iconSrc]);
-    const [fileContent, setFileContent] = useState<false | SVGSVGElement>(false);
-    const [error, setError] = useState("");
-    const ref = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        setFileContent(false);
-        setError("");
-        let aborted = false;
-
-        Promise.resolve(file.svg())
-            .then(contentToSvg)
-            .then(
-                (svg) => {
-                    if (!aborted) {
-                        if (svg) {
-                            setFileContent(svg);
-                        }
-                    }
-                },
-                (e) => {
-                    if (!aborted) {
-                        setError(e.message);
-                    }
-                }
-            );
-        return () => {
-            aborted = true;
-        };
-    }, [file.svg()]);
-    useEffect(appendChildEffect(ref, fileContent), [fileContent]);
     return (
         <form className={classes.ObjectEditorContainer} noValidate autoComplete="off">
             <Grid container className={classes.root} spacing={2}>
-
                 <Grid item md={6} lg={6} xs={12}>
                     <div className={classes.ObjectEditorControls}>
                         <FormControl className={materialClasses.formControl}>
@@ -222,35 +192,14 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
 
                 <Grid item md={6} lg={6} xs={12}>
                     <FormControl className={materialClasses.formControl}>
-                        <div className={classes.objectEditor}>
-                            {!fileContent && !error ? <div>Loading..</div> : undefined}
-                            {fileContent ? <div ref={ref} /> : undefined}
-                            {error ? <div>{error}</div> : undefined}
-                        </div>
+                        <SvgView svg={file.svg()} className={classes.objectEditor} />
                     </FormControl>
 
-                    {fileContent ? (
-                        <FormControl contentEditable={false} className={materialClasses.formControl}>
-                            <TextField multiline rows={10} value={fileContent.outerHTML} />
-                        </FormControl>
-                    ) : (
-                        undefined
-                    )}
+                    <FormControl contentEditable={false} className={materialClasses.formControl}>
+                        <SvgContentView svg={file.svg()} />
+                    </FormControl>
                 </Grid>
             </Grid>
-            {/*<div className={classes.ObjectEditorButtons}>*/}
-            {/*    <Button*/}
-            {/*        variant="contained"*/}
-            {/*        component="span"*/}
-            {/*        disabled={file === iconSrc}*/}
-            {/*        onClick={() => {*/}
-            {/*            onChange(file);*/}
-            {/*        }}*/}
-            {/*        className={classesButton.button}*/}
-            {/*    >*/}
-            {/*        Save*/}
-            {/*    </Button>*/}
-            {/*</div>*/}
         </form>
     );
 };

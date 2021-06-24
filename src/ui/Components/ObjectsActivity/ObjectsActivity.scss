@@ -21,6 +21,8 @@
 .GridElementEditor {
     overflow: hidden;
     max-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .EditorContainer {
