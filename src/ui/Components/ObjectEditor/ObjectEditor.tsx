@@ -20,6 +20,7 @@ import classes from "./ObjectEditor.scss";
 import { GROUP_NAMES } from "./constants";
 import { SvgView } from "../SvgView/SvgView";
 import { SvgContentView } from "../SvgContentView/SvgContentView";
+import {useEditorGroupStyles} from "../EditorGroup/editorGroupStyles";
 
 interface IObjectEditorProps {
     file: ITacticIcon;
@@ -27,14 +28,6 @@ interface IObjectEditorProps {
     onChange(icon: ITacticIcon): void;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: `${theme.spacing(1)}px 0`,
-            width: "100%"
-        }
-    })
-);
 
 const cloneIcon = (icon: ITacticIcon, meta: ITacticIconMetaData): ITacticIcon => ({
     svg: icon.svg,
@@ -44,7 +37,7 @@ const cloneIcon = (icon: ITacticIcon, meta: ITacticIconMetaData): ITacticIcon =>
 const angles = [0, 90, 180, 270];
 
 export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => {
-    const materialClasses = useStyles();
+    const materialClasses = useEditorGroupStyles();
     // const [file, setCurrentIcon] = useState(iconSrc);
     const setCurrentIcon = onChange;
     // useEffect(() => {

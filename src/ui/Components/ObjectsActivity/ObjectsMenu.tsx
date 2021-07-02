@@ -5,7 +5,7 @@ import React from "react";
 
 import { FilePicker } from "../FilePicker/FilePicker";
 import { logError } from "../../util/Logger";
-import { saveIconList } from "../../../ui/TacticIcon/Saver";
+import { saveIconList } from "../../TacticIcon/Saver";
 import { mergeIconList } from "../../util/IconListUtil";
 import { SaveButton } from "../Button/Buttons";
 

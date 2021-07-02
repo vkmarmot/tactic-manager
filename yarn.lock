@@ -1197,10 +1197,12 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tmc/icon-util@^1.0.4":
-  version "1.0.4"
-  resolved "http://npm.stc-spb.ru/@tmc%2ficon-util/-/icon-util-1.0.4.tgz#f8d370fb4d8001bf4083a86bfffdc648aed48a67"
-  integrity sha512-cBd95ANe3S3e+R+IabZL2O1t7Vfm+w8rZ34bQlbRdCnRO48orJUY6X9U3D0aqVzcmSFewOmlHLsKrOXdnwfDaQ==
+"@tmc/icon-util@^1.1.0":
+  version "1.1.0"
+  resolved "http://npm.stc-spb.ru/@tmc%2ficon-util/-/icon-util-1.1.0.tgz#8b42a215fbce3adf6ede9498b4bbb5343e248c48"
+  integrity sha512-5iL/eUxuZBKxf9lwe80nEmIYZLnoOTKTxszfgeEUcelz+ZsocDWY9+WVOJ3a03NV0dB4BFcvhAL4k2IHmXufVg==
+  dependencies:
+    tactic-geometry "^1.0.4"
 
 "@types/electron-packager@^14.0.0":
   version "14.0.0"
@@ -7581,6 +7583,11 @@ tactic-geometry@^1.0.1:
   integrity sha512-vLowSKld7gOmX8g8eOZ71+w19rCFSnhcl7mPULdCKBATMGX/icGlscneH/u7LbLnjdQ+uIDSb0s6p9nGBgNO5g==
   dependencies:
     "@babel/preset-env" "^7.7.4"
+
+tactic-geometry@^1.0.4:
+  version "1.0.4"
+  resolved "http://npm.stc-spb.ru/tactic-geometry/-/tactic-geometry-1.0.4.tgz#6a8f75273628fe387ad50df1e2c755cd1a650411"
+  integrity sha512-h7Vx4d9rmAmq9orRmO3YBMfl2yYp+iulM61ikXjILaxJhLODLLbOz9AQKUyiYCqcncxygXD9jPArz3jD4MtihQ==
 
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
