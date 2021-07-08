@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { ITacticIcon, ITacticIconCaptionData } from "@tmc/icon-util";
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { SvgView } from "../SvgView/SvgView";
-import { SvgContentView } from "../SvgContentView/SvgContentView";
 import { useEditorGroupStyles } from "../EditorGroup/editorGroupStyles";
 
 import classes from "../ObjectEditor/ObjectEditor.scss";
@@ -17,7 +16,6 @@ export interface ICaptionEditorProps {
 export const CaptionsEditor = ({ file, onChange }: ICaptionEditorProps) => {
     const materialClasses = useEditorGroupStyles();
     const [captionSelected, setCaptionSelected] = useState(0);
-    console.log(file);
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
             setCaptionSelected(parseInt(e.target.value, 10));
@@ -72,7 +70,7 @@ export const CaptionsEditor = ({ file, onChange }: ICaptionEditorProps) => {
 
                 <Grid item md={6} lg={6} xs={12}>
                     <FormControl className={materialClasses.formControl}>
-                        <SvgView svg={file.svg()} renderChild={handlRenderChild} className={classes.objectEditor} />
+                        <SvgView data={file} renderChild={handlRenderChild} className={classes.objectEditor} />
                     </FormControl>
                 </Grid>
             </Grid>

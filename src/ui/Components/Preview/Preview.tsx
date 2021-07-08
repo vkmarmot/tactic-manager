@@ -4,7 +4,7 @@ import BrokenImageIcon from "@material-ui/icons/BrokenImage";
 import { contentToSvg, ITacticIcon } from "@tmc/icon-util";
 
 import { fitSvgViewboxToChild } from "../../util/SvgUtil";
-import { appendChildEffect } from "../../effects/SvgEffect";
+import { useAppendChild } from "../../effects/SvgEffect";
 import classes from "./Preview.scss";
 
 interface IPreviewPops {
@@ -45,7 +45,7 @@ export const Preview = ({ file, height = "100%", width = "100%" }: IPreviewPops)
             aborted = true;
         };
     }, [file.svg()]);
-    useEffect(appendChildEffect(ref, loaded), [loaded]);
+    useAppendChild(ref, loaded);
     return (
         <div className={classes.preview}>
             {loaded ? undefined : <ImageIcon />}

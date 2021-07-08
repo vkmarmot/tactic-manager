@@ -185,7 +185,7 @@ export const ObjectEditor = ({ file, groups, onChange }: IObjectEditorProps) => 
 
                 <Grid item md={6} lg={6} xs={12}>
                     <FormControl className={materialClasses.formControl}>
-                        <SvgView svg={file.svg()} className={classes.objectEditor} />
+                        <SvgView data={file} className={classes.objectEditor} />
                     </FormControl>
 
                     <FormControl contentEditable={false} className={materialClasses.formControl}>
