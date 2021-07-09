@@ -21,6 +21,7 @@ function useUpdateCaptionPosition(ref: React.RefObject<HTMLDivElement>, captions
                         updateCaptionPosition(list[i], captions[i]);
                     }
                 }
+                console.log(ref.current.firstElementChild.outerHTML);
             }
         });
     }, [captions]);

@@ -1,4 +1,4 @@
-import { ALIGN, ITacticIconCaptionData } from "@tmc/icon-util";
+import {ALIGN, DEFAULT_H_ALIGN, ITacticIconCaptionData} from "@tmc/icon-util";
 import { Button, Grid } from "@material-ui/core";
 import React, {useCallback, useMemo, useRef} from "react";
 import {AlignPickerButton} from "./AlignPickerButton";
@@ -13,7 +13,7 @@ export const AlignPicker = ({
     onChange(caption: ITacticIconCaptionData): void;
 }) => {
     const defaultVals: ALIGN[] = useMemo(() => {
-        return [caption.halign || "start", caption.valign || "center"];
+        return [caption.halign || DEFAULT_H_ALIGN, caption.valign || DEFAULT_H_ALIGN];
     }, [caption.halign, caption.valign]);
     const ref = useRef(caption);
     ref.current = caption;
