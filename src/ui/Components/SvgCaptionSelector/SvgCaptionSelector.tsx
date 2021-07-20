@@ -1,14 +1,20 @@
-import React, { useMemo } from "react";
-import { useSvgCaptionPosition } from "./hooks";
-import { point } from "tactic-geometry";
+import React from "react";
+import { ITacticIconCaptionData } from "@tmc/icon-util";
 
 import classNames from "./SvgCaptionSelector.module.scss";
 
-const defaultSize = point(0, 0);
+const HUNDRED_PERCENTS = 100;
 
-export const SvgCaptionSelector = ({ selected, svg }: { svg: SVGSVGElement; selected: number }) => {
-    const position = useSvgCaptionPosition(svg, selected);
-    const size = useMemo(() => (position && position.getSize()) || defaultSize, [position]);
+export const SvgCaptionSelector = ({
+    file
+}: {
+    svg: SVGSVGElement;
+    selected: number;
+    file: ITacticIconCaptionData;
+}) => {
+    // const position = useSvgCaptionPosition(svg, selected);
+    // const size = useMemo(() => (position && position.getSize()) || defaultSize, [position]);
+    const { position, scale = [1, 1] } = file;
     if (!position) {
         return null;
     }
@@ -16,9 +22,10 @@ export const SvgCaptionSelector = ({ selected, svg }: { svg: SVGSVGElement; sele
         <div
             className={classNames.captionSelector}
             style={{
-                transform: `translate3d(${position.min.x}px, ${position.min.y}px, 0)`,
-                width: size.x,
-                height: size.y
+                left: `${position[0] * HUNDRED_PERCENTS + 50}%`,
+                top: `${position[1] * HUNDRED_PERCENTS + 50}%`,
+                width: `${scale[0] * HUNDRED_PERCENTS}%`,
+                height: `${scale[1] * HUNDRED_PERCENTS}%`
             }}
         />
     );

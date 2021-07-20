@@ -23,7 +23,7 @@ export const CaptionsEditor = ({ file, onChange }: ICaptionEditorProps) => {
         [setCaptionSelected]
     );
     const handlRenderChild = useCallback(
-        (svg: SVGSVGElement) => <SvgCaptionSelector svg={svg} selected={captionSelected} />,
+        (svg: SVGSVGElement) => <SvgCaptionSelector svg={svg} file={file.meta.captions[captionSelected]} selected={captionSelected} />,
         [captionSelected]
     );
     const handleAlignChange = useCallback(
