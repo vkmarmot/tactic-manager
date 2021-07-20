@@ -11,7 +11,9 @@ export const GROUP_NAMES: { [key: string]: string } = {
     technique: "Бронетехника и автомобили",
     weapons: "Стрелковое оружие и артиллерия",
     "yabpobjects": "Объекты и средства обеспечения ЯБП",
-    "borderprotection": "Технические средства охраны границы"
+    "borderprotection": "Технические средства охраны границы",
+    "troopdisguise": "Маскировка войск",
+    "lightsupport": "Световое обеспечение"
 };
 
 export const DEFAULT_GROUPS = [
@@ -26,5 +28,7 @@ export const DEFAULT_GROUPS = [
     "technique",
     "weapons",
     "yabpobjects",
-    "borderprotection"
+    "borderprotection",
+    "troopdisguise",
+    "lightsupport"
 ];
