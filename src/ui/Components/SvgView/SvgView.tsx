@@ -16,10 +16,7 @@ function useUpdateCaptionPosition(ref: React.RefObject<HTMLDivElement>, captions
                 console.log(list.length, captions.length);
                 console.log(captions);
                 for (let i = 0; i < max; i++) {
-                    const { position } = captions[i];
-                    if (position) {
-                        updateCaptionPosition(list[i], captions[i]);
-                    }
+                    updateCaptionPosition(list[i], captions[i]);
                 }
                 console.log(ref.current.firstElementChild.outerHTML);
             }
