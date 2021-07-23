@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { ITacticIcon, ITacticIconCaptionData } from "@tmc/icon-util";
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { SvgView } from "../SvgView/SvgView";
@@ -13,9 +13,18 @@ export interface ICaptionEditorProps {
     onChange(icon: ITacticIcon): void;
 }
 
+const useCaptionSelected = (captions: ITacticIconCaptionData[] | undefined): [number, (v: number) => void] => {
+    const [captionSelectedUncapped, setCaptionSelected] = useState(0);
+    const captionSelected = useMemo(
+        () => Math.min(captionSelectedUncapped, captions ? captions.length - 1 : 0),
+        [captionSelectedUncapped, captions]
+    );
+    return [captionSelected, setCaptionSelected];
+}
+
 export const CaptionsEditor = ({ file, onChange }: ICaptionEditorProps) => {
     const materialClasses = useEditorGroupStyles();
-    const [captionSelected, setCaptionSelected] = useState(0);
+    const [captionSelected, setCaptionSelected ] = useCaptionSelected(file.meta.captions);
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
             setCaptionSelected(parseInt(e.target.value, 10));
@@ -26,6 +35,7 @@ export const CaptionsEditor = ({ file, onChange }: ICaptionEditorProps) => {
         (svg: SVGSVGElement) => <SvgCaptionSelector svg={svg} selected={captionSelected} />,
         [captionSelected]
     );
+
     const handleAlignChange = useCallback(
         (caption: ITacticIconCaptionData) => {
             if (!file.meta.captions) {
@@ -43,7 +53,7 @@ export const CaptionsEditor = ({ file, onChange }: ICaptionEditorProps) => {
         },
         [onChange, captionSelected]
     );
-    if (!file.meta.captions) {
+    if (!file.meta.captions || !file.meta.captions.length) {
         return null;
     }
     return (
@@ -61,10 +71,17 @@ export const CaptionsEditor = ({ file, onChange }: ICaptionEditorProps) => {
                                 ))}
                             </Select>
                         </FormControl>
-                        <div className={materialClasses.formControl}>
-                            <InputLabel id="demo-simple-select-label">Выравнивание</InputLabel>
-                            <AlignPicker onChange={handleAlignChange} caption={file.meta.captions[captionSelected]} />
-                        </div>
+                        {file.meta.captions[captionSelected] ? (
+                            <div className={materialClasses.formControl}>
+                                <InputLabel id="demo-simple-select-label">Выравнивание</InputLabel>
+                                <AlignPicker
+                                    onChange={handleAlignChange}
+                                    caption={file.meta.captions[captionSelected]}
+                                />
+                            </div>
+                        ) : (
+                            undefined
+                        )}
                     </div>
                 </Grid>
 
