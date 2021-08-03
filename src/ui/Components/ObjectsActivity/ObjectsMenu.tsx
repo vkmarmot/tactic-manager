@@ -1,11 +1,10 @@
-import { ITacticIcon, parseList } from "@tmc/icon-util";
+import { ITacticIcon, makeIconListJson, parseList } from "@tmc/icon-util";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import React, { useRef } from "react";
 
 import { FilePicker } from "../FilePicker/FilePicker";
 import { logError } from "../../util/Logger";
-import { saveIconList } from "../../TacticIcon/Saver";
 import { mergeIconList } from "../../util/IconListUtil";
 import { SaveButton } from "../Button/Buttons";
 
@@ -27,8 +26,8 @@ export const Load = ({
     return (
         <>
             <FilePicker
-                key={"picker"}
-                title={"Загрузить"}
+                key="picker"
+                title="Загрузить"
                 content={content}
                 startIcon={icon}
                 accept="image/svg+xml, .json, .tmc"
@@ -43,7 +42,7 @@ export const Load = ({
                     logError(error);
                 }}
             />
-            <div className={classnames.divContainer} key={"loader"} ref={ref} />
+            <div className={classnames.divContainer} key="loader" ref={ref} />
         </>
     );
 };
@@ -56,7 +55,7 @@ export const ObjectsMenu = ({ onFiles, files }: { onFiles(list: ITacticIcon[]): 
             <div className={classnames.divContainer} ref={ref} />
             <Load icon={<LibraryBooksIcon />} onFiles={onFiles} />
             <FilePicker
-                title={"Добавить"}
+                title="Добавить"
                 startIcon={<LibraryAddIcon />}
                 accept="image/svg+xml, .json, .tmc"
                 onFiles={(newFiles) => {
@@ -75,12 +74,10 @@ export const ObjectsMenu = ({ onFiles, files }: { onFiles(list: ITacticIcon[]): 
             />
 
             <SaveButton
-                title={"Сохранить"}
+                title="Сохранить"
                 filter="json"
                 disabled={!files.length}
-                onSave={(path) => {
-                    saveIconList(path, files);
-                }}
+                toSave={() => makeIconListJson(files)}
                 className={classesButton.button}
             />
         </ToolbarDesctopSection>

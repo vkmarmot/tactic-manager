@@ -1,10 +1,6 @@
 module.exports = [
     // Add support for native node modules
     {
-        test: /\.node$/,
-        use: "node-loader"
-    },
-    {
         test: /\.(m?js|node)$/,
         parser: { amd: false },
         use: {
@@ -21,12 +17,12 @@ module.exports = [
     {
         test: /\.scss$/,
         exclude: /\.useable\.scss/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader?modules" }, { loader: "sass-loader" }]
+        use: [{ loader: "style-loader" }, { loader: "css-loader", options: { modules: "local" } }, { loader: "sass-loader" }]
     },
     {
         test: /\.tsx?$/,
         exclude: /(node_modules|.webpack)/,
-        loaders: [{ loader: "babel-loader" }]
+        use: [{ loader: "babel-loader" }]
     }
     //  */
 ];

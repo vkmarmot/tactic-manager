@@ -1,0 +1,28 @@
+image: node:15
+
+variables:
+    GIT_STRATEGY: "fetch"
+    GIT_SUBMODULE_STRATEGY: "normal"
+    GIT_CHECKOUT: "true"
+
+stages:
+    - build
+#    - deploy
+
+before_script:
+    - git checkout -B "$CI_COMMIT_REF_NAME" "$CI_COMMIT_SHA"
+    - npm set registry http://npm.stc-spb.ru && npm install
+    - echo '//npm.stc-spb.ru/:_authToken=${NPM_TOKEN}'>.npmrc
+
+cache:
+    paths:
+        - node_modules/
+
+build:
+    artifacts:
+        paths:
+            - dist/
+    stage: build
+    script:
+        - npm run build
+

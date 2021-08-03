@@ -1,6 +1,8 @@
 .divContainer {
     visibility: hidden;
-    position: absolute;
+    position: fixed;
+    width: 0;
+    height: 0;
     left: 0;
     top: 0;
 }

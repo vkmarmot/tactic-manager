@@ -22,14 +22,11 @@ function useUpdateCaptionPosition(ref: React.RefObject<HTMLDivElement>, { captio
                 const list = ref.current.firstElementChild.getElementsByTagName("text");
                 const maxIndex = Math.min(list.length, captions.length);
 
-                console.log(list.length, captions.length);
-                console.log(captions);
                 for (let i = 0; i < maxIndex; i++) {
                     const { halign = DEFAULT_H_ALIGN, valign = DEFAULT_V_ALIGN, max, min } = captions[i];
                     const bounds = absolutizeBounds(new Bounds(point(min), point(max)), viewBox);
                     updateCaptionPosition(list[i], { halign, valign, bounds });
                 }
-                console.log(ref.current.firstElementChild.outerHTML);
             }
         });
     }, [captions]);

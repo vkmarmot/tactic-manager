@@ -1,6 +1,6 @@
 import Button from "@material-ui/core/Button";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { remote } from "electron";
+import { saveAs } from "file-saver";
 import React, { useCallback } from "react";
 import SaveIcon from "@material-ui/icons/Save";
 import IconButton from "@material-ui/core/IconButton";
@@ -11,7 +11,7 @@ interface ISaveButtonProps {
     children?: string;
     filter: string;
     title?: string;
-    onSave(path: string): void;
+    toSave(): string;
 }
 
 export const SaveButton: React.FC<ISaveButtonProps> = ({
@@ -19,25 +19,14 @@ export const SaveButton: React.FC<ISaveButtonProps> = ({
     disabled,
     filter,
     className,
-    onSave,
+    toSave,
     children
 }: ISaveButtonProps) => {
     const handler = useCallback(() => {
-        remote.dialog
-            .showSaveDialog({
-                filters: [
-                    {
-                        name: filter,
-                        extensions: [filter]
-                    }
-                ]
-            })
-            .then((path) => {
-                if (!path.canceled && path.filePath) {
-                    onSave(path.filePath);
-                }
-            });
-    }, [filter, onSave]);
+        const data = toSave();
+        const blob = new Blob([data], {type: "application/json;charset=utf-8"});
+        saveAs(blob, "icons.json")
+    }, [filter, toSave]);
     if (!children) {
         return (
             <IconButton title={title} className={className} color="inherit" onClick={handler} disabled={disabled}>

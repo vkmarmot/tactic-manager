@@ -1,4 +1,3 @@
-import fs from "fs";
 
 import {ITacticIcon, makeIconListJson, makeIconSvgWithDesc} from "@tmc/icon-util";
 
@@ -27,20 +26,20 @@ const createLegacyIconData = (icon: ITacticIcon) => {
     }`;
 };
 
-export const saveIconListLegacy = (file: string, list: ITacticIcon[]) => {
-    const result: string[] = [];
-    for (const icon of list) {
-        const svg = createLegacyIconData(icon);
-        result.push(svg);
-    }
-    fs.writeFileSync(
-        file,
-        `export default {
-        ${result.reduce((res, cur) => `${res}${res ? ", " : ""}${cur}`, "")}
-    }`
-    );
-};
-
-export const saveIconList = (file: string, list: ITacticIcon[]) => {
-    fs.writeFileSync(file, makeIconListJson(list));
-};
+// export const saveIconListLegacy = (file: string, list: ITacticIcon[]) => {
+//     const result: string[] = [];
+//     for (const icon of list) {
+//         const svg = createLegacyIconData(icon);
+//         result.push(svg);
+//     }
+//     fs.writeFileSync(
+//         file,
+//         `export default {
+//         ${result.reduce((res, cur) => `${res}${res ? ", " : ""}${cur}`, "")}
+//     }`
+//     );
+// };
+//
+// export const saveIconList = (file: string, list: ITacticIcon[]) => {
+//     fs.writeFileSync(file, makeIconListJson(list));
+// };
